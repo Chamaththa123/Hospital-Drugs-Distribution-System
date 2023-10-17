@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz@9..40&family=PT+Sans&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+.column1 {
+    float: left;
+    width: 55%;
+    height: 100vh;
+}
+
+.column2 {
+    float: left;
+    width: 40%;
+    height: 100vh;
+    padding-left: 9%;
+    padding-right: 9%;
+    font-family: 'PT Sans', sans-serif;
+    color: #1a6ae4;
+}
+
+.logo {
+    width: 98%;
+    margin-top: 5%;
+    margin-left: 7%;
+}
+
+.form {
+    margin-top: 5%;
+}
+
+.welcome {
+    margin-left: 15%;
+    color: #114DA9;
+    margin-top: -13%;
+}
