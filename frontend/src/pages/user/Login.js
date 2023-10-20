@@ -13,20 +13,22 @@ function Login() {
             </div>
             <div className="column2">
                 <center><img src={logo} alt='sd' className='logo' /></center>
-                <center><h1 className='welcome'><b>WELCOME</b></h1></center>
+                <center><h1 className='welcome'><b>Welcome</b></h1></center>
                 <Form className='form'>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Registered No</Form.Label>
-                        <Form.Control type="email" placeholder="Enter Registered No" style={{ borderRadius: '50px', width: '120%', fontSize: '14px' }} />
+                        <Form.Control type="email" placeholder="Enter Registered No" style={{ borderRadius: '50px', width: '120%', fontSize: '14px', height: '150%' }} />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Label>Password</Form.Label>
                         <Form.Control type="password" placeholder="Enter Password" style={{ borderRadius: '50px', width: '120%', fontSize: '14px' }} />
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                        <Form.Check type="checkbox" label="Check me out" />
-                    </Form.Group>
-                    <Button type="submit" style={{ borderRadius: '50px', width: '120%',backgroundColor:'#114DA9' }}>
+                    <Form.Text className="text-muted">
+                        <div className='forget-password' onClick={() => { /* Handle Forget Password action */ }}>
+                            Forget Password
+                        </div>
+                    </Form.Text>
+                    <Button type="submit" style={{ borderRadius: '50px', width: '120%', backgroundColor: '#114DA9' }}>
                         Sign In
                     </Button>
                 </Form>
