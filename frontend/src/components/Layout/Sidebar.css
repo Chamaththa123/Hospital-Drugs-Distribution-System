@@ -1,28 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz@9..40&family=PT+Sans&family=Roboto&display=swap');
 .sidenav {
-    height: 100%;
-    width: 160px;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #111;
-    overflow-x: hidden;
-    padding-top: 20px;
-  }
-  
-  .sidenav a {
-    padding: 6px 8px 6px 16px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-  }
-  
-  .sidenav a:hover {
-    color: #f1f1f1;
+  height: 100%;
+  width: 18%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #ffffff;
+  overflow-x: hidden;
+  padding-top: 20px;
+
+  /* Add a shadow to the right border */
+  box-shadow: 1px 0 1px rgba(0, 0, 0, 0.2);
+}
+
+
+.sidenav a {
+  padding: 5% 5% 5% 15%;
+  text-decoration: none;
+  font-size: 15px;
+  color: #585858;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #2403b9;
+}
+
+.logo {
+  width: 50%;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
   }
 
-  @media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
+  .sidenav a {
+    font-size: 18px;
   }
+}
