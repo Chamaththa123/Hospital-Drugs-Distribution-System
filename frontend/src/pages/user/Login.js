@@ -12,12 +12,12 @@ function Login() {
                 <Auth />
             </div>
             <div className="column2">
-                <center><img src={logo} alt='sd' className='logo' /></center>
+                <center><img src={logo} alt='logo' className='logo1' /></center>
                 <center><h1 className='welcome'><b>Welcome</b></h1></center>
                 <Form className='form'>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label>Registered No</Form.Label>
-                        <Form.Control type="email" placeholder="Enter Registered No" style={{ borderRadius: '50px', width: '120%', fontSize: '14px', height: '150%' }} />
+                        <Form.Label>Email</Form.Label>
+                        <Form.Control type="email" placeholder="Enter Email" style={{ borderRadius: '50px', width: '120%', fontSize: '14px', height: '150%' }} />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Label>Password</Form.Label>
