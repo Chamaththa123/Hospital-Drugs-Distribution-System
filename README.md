@@ -1,1 +1,1 @@
-# Hospital-Drugs-Management-System
+# Hospital-Drugs-Distribution-System
