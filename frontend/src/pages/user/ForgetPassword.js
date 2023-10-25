@@ -17,9 +17,9 @@ function ForgetPassword() {
                         <Form.Label>Email</Form.Label>
                         <Form.Control type="email" placeholder="Enter Email" style={{ borderRadius: '50px', width: '120%', fontSize: '14px', height: '150%' }} />
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Group className="mb-3">
                         <Form.Label>Employee No</Form.Label>
-                        <Form.Control type="email" placeholder="Enter Employee No" style={{ borderRadius: '50px', width: '120%', fontSize: '14px', height: '150%' }} />
+                        <Form.Control type="text" placeholder="Enter Employee No" style={{ borderRadius: '50px', width: '120%', fontSize: '14px', height: '150%' }} />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Label>New Password</Form.Label>
