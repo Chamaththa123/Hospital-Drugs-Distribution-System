@@ -4,6 +4,7 @@ import Auth from '../../components/Layout/Auth';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import logo from '../../assets/logo.png';
+import { Link } from 'react-router-dom';
 
 function Login() {
     return (
@@ -24,8 +25,10 @@ function Login() {
                         <Form.Control type="password" placeholder="Enter Password" style={{ borderRadius: '50px', width: '120%', fontSize: '14px' }} />
                     </Form.Group>
                     <Form.Text className="text-muted">
-                        <div className='forget-password' onClick={() => { /* Handle Forget Password action */ }}>
-                            Forget Password
+                        <div className='forget-password'>
+                            <Link to="/ForgetPassword" className='forget-password'>
+                                Forget Password
+                            </Link>
                         </div>
                     </Form.Text>
                     <Button type="submit" style={{ borderRadius: '50px', width: '120%', backgroundColor: '#114DA9' }}>
