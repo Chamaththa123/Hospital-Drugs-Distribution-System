@@ -1,9 +1,11 @@
 const jwt = require("jsonwebtoken");
 const db = require("../db/db");
+const dbService = require("../service/authDBService");
 const bcrypt = require("bcryptjs");
 
 const saltRounds = 10;
 
+//validate email already exist
 const checkEmailExists = (email) => {
   return new Promise((resolve, reject) => {
     const emailCheckSql = "SELECT COUNT(*) AS count FROM user WHERE Email = ?";
@@ -17,6 +19,7 @@ const checkEmailExists = (email) => {
   });
 };
 
+//user registration
 const registerUser = async (req, res) => {
   const { Password, Email, Tp, User_Name, Role } = req.body;
 
@@ -46,8 +49,7 @@ const registerUser = async (req, res) => {
   });
 };
 
-const secretKey = "HTGWEWDWFSDCFSCW";
-
+// user login
 const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -71,7 +73,6 @@ const loginUser = async (req, res) => {
       if (!passwordMatch) {
         return res.status(401).json({ message: "Invalid credentials" });
       }
-      const user_privilages = await dbService.getUsersPrivilages(user.idUser);
 
       // Generate JWT token
       const token = jwt.sign({ userId: user.id }, "HTGWEWDWFSDCFSCW");
@@ -81,9 +82,7 @@ const loginUser = async (req, res) => {
           userName: user.User_Name,
           email: user.Email,
           userId: user.idUser,
-          branch: user.Branch_idBranch,
           role: user.Role,
-          ...user_privilages[0],
         },
       });
     });
@@ -93,6 +92,7 @@ const loginUser = async (req, res) => {
   }
 };
 
+//validate user token
 const checkToken = (req, res) => {
   if (req.userId) {
     return res.json({
@@ -106,8 +106,57 @@ const checkToken = (req, res) => {
   }
 };
 
+//get all users
+const getUsers = async (req, res) => {
+  try {
+    const users = await dbService.fetchUsers();
+
+    res.status(200).json(users);
+  } catch (e) {
+    console.error("Error fetching users", err);
+    res
+      .status(500)
+      .json({ message: "Error fetching users", error: err.message });
+  }
+};
+
+//get user id
+const getUserById = async (req, res) => {
+  try {
+    const { idUser } = req.params;
+
+    const user = await dbService.fetchUserById(idUser);
+
+    res.status(200).json(user);
+  } catch (err) {
+    console.error("Error fetching user by id", err);
+    res
+      .status(500)
+      .json({ message: "Error fetching user by id", error: err.message });
+  }
+};
+
+//update user status
+const changeUserStatus = async (req, res) => {
+  try {
+    const { idUser } = req.params;
+
+    await dbService.updateUserStatus(idUser);
+
+    res.status(200).json({ message: "User status updated successfully" });
+  } catch (err) {
+    console.error("error updating user status", err);
+    res
+      .status(500)
+      .json({ message: "error updating user status", error: err.message });
+  }
+};
+
 module.exports = {
   registerUser,
   loginUser,
   checkToken,
+  getUsers,
+  getUserById,
+  changeUserStatus,
 };
