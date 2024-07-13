@@ -1,5 +1,6 @@
 const db = require("../db/db");
 
+//insert category
 const insertCategory = (Description) => {
   const query = "INSERT INTO product_category (Description) VALUES (?)";
 
@@ -14,6 +15,7 @@ const insertCategory = (Description) => {
   });
 };
 
+//fetch category
 const fetchCategory = () => {
   const query = "SELECT * FROM product_category";
   return new Promise((resolve, reject) => {
@@ -27,6 +29,7 @@ const fetchCategory = () => {
   });
 };
 
+//get category items
 const fetchCategoryItems = (idItem_Category) => {
   const query = "SELECT * FROM product WHERE Item_Category_idItem_Category = ?";
   return new Promise((resolve, reject) => {
@@ -40,12 +43,14 @@ const fetchCategoryItems = (idItem_Category) => {
   });
 };
 
+//update category details
 const updateCategory = (idItem_Category, Description) => {
   const query = `UPDATE product_category SET Description=? WHERE idItem_Category=?`;
 
   return db.query(query, [Description, idItem_Category]);
 };
 
+//delete category
 const deleteCategory = (idItem_Category) => {
   const query = `DELETE FROM product_category WHERE idItem_Category=?`;
   return db.query(query, [idItem_Category]);
