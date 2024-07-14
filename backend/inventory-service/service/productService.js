@@ -41,16 +41,16 @@ const insertProduct = (
     });
   };
 
-//   const fetchItems = () => {
-//     const query =
-//       "SELECT i.*, ic.Description AS Item_Category, qt.Description AS Quantity_Type FROM item i INNER JOIN quantity_type qt ON i.Qty_Type = qt.idQuantity_Type INNER JOIN item_category ic ON ic.idItem_Category = i.Item_Category_idItem_Category WHERE i.Branch_idBranch = ? AND i.Type = ? ORDER BY i.idItem DESC";
-//     return new Promise((resolve, reject) => {
-//       db.query(query, [Branch_idBranch, 1], (err, results) => {
-//         if (err) {
-//           reject(err);
-//         } else {
-//           resolve(JSON.parse(JSON.stringify(results)));
-//         }
-//       });
-//     });
-//   };
+  const fetchItems = () => {
+    const query =
+      "SELECT i.*, ic.Description AS Item_Category FROM item i INNER JOIN product_category ic ON ic.idItem_Category = i.Item_Category_idItem_Category ORDER BY i.idItem DESC";
+    return new Promise((resolve, reject) => {
+      db.query(query, [], (err, results) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(JSON.parse(JSON.stringify(results)));
+        }
+      });
+    });
+  };
