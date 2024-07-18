@@ -15,7 +15,8 @@ app.use(bodyParser.json());
 app.use(express.json());
 app.use(cookieParser());
 
-app.use("/category", require("./route/productCategoryRoute"));
+app.use("/product-categories", require("./route/productCategoryRoute"));
+app.use("/products", require("./route/productRoute"));
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

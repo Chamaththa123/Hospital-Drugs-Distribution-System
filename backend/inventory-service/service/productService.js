@@ -54,3 +54,78 @@ const insertProduct = (
       });
     });
   };
+
+  const updateProduct = (
+    Item_Category_idItem_Category,
+    Item_Code,
+    Item_Name,
+    Description,
+    Cost,
+    Rate,
+    Qty_Type,
+    Qty,
+    Expired_Date,
+    idItem
+  ) => {
+    const query = `UPDATE product 
+      SET 
+      Item_Category_idItem_Category=?, 
+      Item_Code =?,
+    Item_Name =?,
+        Description =?,
+      Cost=?,
+      Rate=?,
+      Qty_Type=?, 
+      Qty=?, 
+      Expired_Date=?
+      WHERE idItem=?`;
+  
+    return new Promise((resolve, reject) => {
+      return db.query(
+        query,
+        [
+          Item_Category_idItem_Category,
+          Item_Code,
+          Item_Name,
+          Description,
+          Cost,
+          Rate,
+          Qty_Type,
+          Qty,
+          Expired_Date,
+          idItem,
+        ],
+        (err, results) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(results);
+          }
+        }
+      );
+    });
+  };
+
+  const updateProductQty = (Qty, idItem) => {
+    const query = `UPDATE product 
+      SET 
+      Qty=? 
+      WHERE idItem=?`;
+  
+    return new Promise((resolve, reject) => {
+      return db.query(query, [Qty, idItem], (err, results) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(results);
+        }
+      });
+    });
+  };
+  
+  module.exports = {
+    insertProduct,
+    fetchItems,
+    updateProduct,
+    updateProductQty
+  };
