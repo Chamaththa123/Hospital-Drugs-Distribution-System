@@ -4,7 +4,7 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 
 const app = express();
-const port = 8002;
+const port = 8003;
 
 const corsOptions = {
   orign: "*",
@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use("/product-categories", require("./route/productCategoryRoute"));
-app.use("/products", require("./route/productRoute"));
+app.use("/items", require("./route/productRoute"));
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

@@ -19,7 +19,7 @@ const insertCategory = (Description) => {
 const fetchCategory = () => {
   const query = "SELECT * FROM product_category";
   return new Promise((resolve, reject) => {
-    db.query(query, [Branch_idBranch], (err, results) => {
+    db.query(query, [], (err, results) => {
       if (err) {
         reject(err);
       } else {

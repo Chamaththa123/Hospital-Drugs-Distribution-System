@@ -6,6 +6,7 @@ const app = express();
 const services = [
     { route: '/api/users', target: 'http://localhost:8001', serviceName: 'User Service' },
     { route: '/api/suppliers', target: 'http://localhost:8002', serviceName: 'Supplier Service' },
+    { route: '/api/products', target: 'http://localhost:8003', serviceName: 'Product Service' },
   ];
 
   // Loop through services to create routes and proxy middleware dynamically

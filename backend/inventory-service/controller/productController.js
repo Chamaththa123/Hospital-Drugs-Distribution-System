@@ -1,5 +1,4 @@
 const dbService = require("../service/productService");
-const { currentDate } = require("../utils/currentData");
 
 const createProduct = async (req, res) => {
   try {

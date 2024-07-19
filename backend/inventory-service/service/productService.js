@@ -12,7 +12,7 @@ const insertProduct = (
     Expired_Date,
     Status
   ) => {
-    const query = `INSERT INTO product
+    const query = `INSERT INTO products
       (Item_Category_idItem_Category,Item_Code, Item_Name,Description, Cost, Rate, Qty_Type, Qty,Expired_Date,Status) 
       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
     return new Promise((resolve, reject) => {
@@ -43,7 +43,7 @@ const insertProduct = (
 
   const fetchItems = () => {
     const query =
-      "SELECT i.*, ic.Description AS Item_Category FROM item i INNER JOIN product_category ic ON ic.idItem_Category = i.Item_Category_idItem_Category ORDER BY i.idItem DESC";
+      "SELECT i.*, ic.Description AS Item_Category FROM products i INNER JOIN product_category ic ON ic.idItem_Category = i.Item_Category_idItem_Category ORDER BY i.idItem DESC";
     return new Promise((resolve, reject) => {
       db.query(query, [], (err, results) => {
         if (err) {
@@ -67,7 +67,7 @@ const insertProduct = (
     Expired_Date,
     idItem
   ) => {
-    const query = `UPDATE product 
+    const query = `UPDATE products 
       SET 
       Item_Category_idItem_Category=?, 
       Item_Code =?,
@@ -107,7 +107,7 @@ const insertProduct = (
   };
 
   const updateProductQty = (Qty, idItem) => {
-    const query = `UPDATE product 
+    const query = `UPDATE products 
       SET 
       Qty=? 
       WHERE idItem=?`;
