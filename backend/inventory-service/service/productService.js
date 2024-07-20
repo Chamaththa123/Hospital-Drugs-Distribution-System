@@ -47,6 +47,7 @@ const insertProduct = (
     return new Promise((resolve, reject) => {
       db.query(query, [], (err, results) => {
         if (err) {
+          console.error("Database query error: ", err);
           reject(err);
         } else {
           resolve(JSON.parse(JSON.stringify(results)));
@@ -54,6 +55,22 @@ const insertProduct = (
       });
     });
   };
+
+  const fetchItemById = (idItem) => {
+    const query =
+      "SELECT i.*, ic.Description AS Item_Category FROM products i INNER JOIN product_category ic ON ic.idItem_Category = i.Item_Category_idItem_Category WHERE i.idItem = ? ORDER BY i.idItem DESC";
+    return new Promise((resolve, reject) => {
+      db.query(query, [idItem], (err, results) => {
+        if (err) {
+          console.error("Database query error: ", err);
+          reject(err);
+        } else {
+          resolve(JSON.parse(JSON.stringify(results)));
+        }
+      });
+    });
+  };
+  
 
   const updateProduct = (
     Item_Category_idItem_Category,
@@ -127,5 +144,6 @@ const insertProduct = (
     insertProduct,
     fetchItems,
     updateProduct,
-    updateProductQty
+    updateProductQty,
+    fetchItemById
   };

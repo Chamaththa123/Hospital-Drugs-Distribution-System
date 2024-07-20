@@ -39,9 +39,25 @@ const createProduct = async (req, res) => {
 
 const getProducts = async (req, res) => {
   try {
-    const products = await dbService.fetchItems;
+    const products = await dbService.fetchItems();
     if (products.length === 0) {
       return res.status(404).json({ message: "Products not found" });
+    }
+    res.status(200).json(products);
+  } catch (err) {
+    res.status(500).json({
+      message: "Error fetching products",
+      error: err.message,
+    });
+  }
+};
+
+const getProductById = async (req, res) => {
+  try {
+    const { idItem } = req.params;
+    const products = await dbService.fetchItemById(idItem);
+    if (products.length === 0) {
+      return res.status(404).json({ message: "Product not found" });
     }
     res.status(200).json(products);
   } catch (err) {
@@ -93,7 +109,11 @@ const updateProductQty = async (req, res) => {
     const { idItem } = req.params;
     const { Qty } = req.body;
 
-    await dbService.updateProductQty(Qty, idItem);
+    const item = await dbService.fetchItemById(idItem);
+
+    let newQty = item[0].Qty + Qty ;
+
+    await dbService.updateProductQty(newQty, idItem);
     res.status(200).json({ message: "Item qty updated successfully" });
   } catch (err) {
     console.error("Error updating Item qty:", err);
@@ -108,4 +128,5 @@ module.exports = {
   updateProduct,
   getProducts,
   updateProductQty,
+  getProductById
 };

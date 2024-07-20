@@ -4,11 +4,12 @@ const {
   createProduct,
   updateProduct,
   getProducts,
-  updateProductQty,
+  updateProductQty,getProductById
 } = require("../controller/productController");
 
 router.post("/", createProduct);
 router.get("/", getProducts);
+router.get("/:idItem", getProductById);
 router.put("/:idItem", updateProduct);
 router.put("/add-qty/:idItem", updateProductQty);
 
