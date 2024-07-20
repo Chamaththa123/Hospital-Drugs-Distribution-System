@@ -1,4 +1,5 @@
 const dbService = require("../service/productService");
+const stockDBService = require("../service/stockService");
 
 const createProduct = async (req, res) => {
   try {
@@ -15,7 +16,7 @@ const createProduct = async (req, res) => {
       Status,
     } = req.body;
 
-    await dbService.insertProduct(
+    const product = await dbService.insertProduct(
       Item_Category_idItem_Category,
       Item_Code,
       Item_Name,
@@ -27,6 +28,28 @@ const createProduct = async (req, res) => {
       Expired_Date,
       Status
     );
+
+    const date = new Date().toDateString();
+    const Item_idItem = product.insertId;
+    const Transaction_ID = product.insertId;
+    const Transaction_Type = "PRODUCT";
+    const Sell_Price = Rate;
+
+    let IN_Stock = Qty;
+    let Out_Stock = 0;
+    let SIH = Qty;
+
+    await stockDBService.insertStock(
+      date,
+      Item_idItem,
+      Transaction_ID,
+      Transaction_Type,
+      Sell_Price,
+      IN_Stock,
+      Out_Stock,
+      SIH
+    );
+
     res.status(201).json({
       message: "item added successfully",
     });
@@ -111,9 +134,28 @@ const updateProductQty = async (req, res) => {
 
     const item = await dbService.fetchItemById(idItem);
 
-    let newQty = item[0].Qty + Qty ;
+    let newQty = item[0].Qty + Qty;
 
     await dbService.updateProductQty(newQty, idItem);
+
+    const date = new Date().toDateString();
+    const Transaction_Type = "Add Qty";
+    const Sell_Price = item[0].Rate;
+
+    let IN_Stock = Qty;
+    let Out_Stock = 0;
+    let SIH = newQty;
+
+    await stockDBService.insertStock(
+      date,
+      idItem,
+      idItem,
+      Transaction_Type,
+      Sell_Price,
+      IN_Stock,
+      Out_Stock,
+      SIH
+    );
     res.status(200).json({ message: "Item qty updated successfully" });
   } catch (err) {
     console.error("Error updating Item qty:", err);
@@ -128,5 +170,5 @@ module.exports = {
   updateProduct,
   getProducts,
   updateProductQty,
-  getProductById
+  getProductById,
 };
