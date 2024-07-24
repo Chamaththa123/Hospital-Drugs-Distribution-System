@@ -1,4 +1,4 @@
-const dbService = require("../service/productService");
+const dbService = require("../service/customerService");
 
 const createCustomer = async (req, res) => {
   try {
